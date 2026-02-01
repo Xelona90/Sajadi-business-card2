@@ -32,8 +32,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ nameFa, nameEn, titleFa, 
             <ElectricBorder color="#fbbf24" borderRadius={999} chaos={0.15} speed={1.5}>
                 <div className="w-28 h-28 rounded-full bg-slate-950 p-1 overflow-hidden relative z-10">
                 <img 
-                    src="https://picsum.photos/400/400" 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=400&h=400&q=80" 
                     alt="Profile" 
+                    crossOrigin="anonymous"
                     className="w-full h-full rounded-full object-cover shadow-2xl"
                 />
                 </div>

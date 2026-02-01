@@ -152,16 +152,21 @@ const App: React.FC = () => {
     
     setIsSaving(true);
     try {
-      // Small delay to ensure rendering
-      await new Promise(r => setTimeout(r, 100));
+      // Ensure fonts are ready
+      await document.fonts.ready;
+      
+      // Small delay to ensure rendering and font application
+      await new Promise(r => setTimeout(r, 200));
       
       const dataUrl = await toJpeg(printableRef.current, { 
         quality: 1.0, 
         backgroundColor: '#020617',
-        cacheBust: true,
-        // Ensure high resolution
         width: 1080,
-        height: 1080
+        height: 1080,
+        pixelRatio: 1, // Fix resolution 
+        fetchRequestInit: {
+          mode: 'cors', // Ensure we fetch with CORS
+        }
       });
       
       const link = document.createElement('a');
@@ -170,6 +175,7 @@ const App: React.FC = () => {
       link.click();
     } catch (err) {
       console.error('Failed to save image', err);
+      alert("Failed to generate image. Please try again.");
     } finally {
       setIsSaving(false);
     }
@@ -313,8 +319,9 @@ const App: React.FC = () => {
               <div className="flex flex-col items-center w-full mt-8">
                   <div className="w-64 h-64 rounded-full p-2 border-4 border-amber-500/40 bg-slate-900 shadow-2xl relative mb-10">
                       <img 
-                        src="https://picsum.photos/400/400" 
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=400&h=400&q=80" 
                         alt="Profile" 
+                        crossOrigin="anonymous"
                         className="w-full h-full rounded-full object-cover"
                       />
                       <div className="absolute inset-0 rounded-full border border-amber-400/30 shadow-[0_0_60px_rgba(251,191,36,0.15)]"></div>

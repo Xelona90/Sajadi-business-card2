@@ -31,6 +31,7 @@ const AddressCard: React.FC<AddressCardProps> = ({ address, t, lang }) => {
          <img 
             src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=600" 
             alt="Map Background" 
+            crossOrigin="anonymous"
             className="w-full h-full object-cover opacity-[0.15] grayscale contrast-125 group-hover:scale-105 transition-transform duration-700 ease-out"
          />
          {/* Gradient Overlay/Mask */}
